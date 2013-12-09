@@ -1,0 +1,130 @@
+	#### .pen #####
+	Host firewall.pen
+	    ProxyCommand ssh jumper.pen -W %h:%p
+	    Hostname 169.254.0.1
+	
+	# Jailed Servers
+	Host jailer.pen
+	    Hostname 169.254.25.2
+	
+	Host jumper.pen
+	    Port 2225
+	    Hostname 63.235.131.203
+	
+	Host wiki.pen
+	    Hostname 169.254.25.4
+	
+	Host git.pen
+	    RequestTTY no
+	    User git
+	    Hostname 169.254.25.5
+	
+	Host mail.pen
+	    Hostname 169.254.25.6
+	
+	Host web0.pen
+	    Hostname 169.254.25.7
+	
+	Host jailer.pen wiki.pen git.pen mail.pen web0.pen
+	    ProxyCommand ssh jumper.pen -W %h:%p
+	
+	Host pastebin.pen
+		ProxyCommand ssh jumper.pen -W %h:%p
+		Hostname 169.254.25.8
+	
+	Host ctf0.pen
+		ProxyCommand ssh jumper.pen -W %h:%p
+		Hostname 169.254.25.9
+	
+	Host irc0.pen
+		ProxyCommand ssh jumper.pen -W %h:%p
+		Hostname 169.254.25.11
+
+	# Virtual Box Hosts
+	Host vbox?.pen
+	    ProxyCommand ssh jumper.pen -W %h:%p
+	Host vbox0.pen
+	    Hostname 169.254.10.2
+	Host vbox0lab.pen
+	    Hostname 169.254.30.2
+	    ProxyCommand ssh jumper.pen -W %h:%p
+	Host vbox1.pen
+	    Hostname 169.254.1.2
+	Host vbox2.pen
+	    Hostname 169.254.2.2
+	Host vbox3.pen
+	    Hostname 169.254.3.2
+	Host vbox4.pen
+	    Hostname 169.254.4.2
+	Host vbox5.pen
+	    Hostname 169.254.5.2
+	Host vboxE.pen
+	    Hostname 169.254.40.2
+	
+	# Virtual Machines on Virtual Box Hosts
+	Host V*0.pen
+	    ProxyCommand ssh vbox0.pen -W %h:%p
+	Host V*1.pen
+	    ProxyCommand ssh vbox1.pen -W %h:%p
+	Host V*2.pen
+	    ProxyCommand ssh vbox2.pen -W %h:%p
+	Host V*3.pen
+	    ProxyCommand ssh vbox3.pen -W %h:%p
+	Host V*4.pen
+	    ProxyCommand ssh vbox4.pen -W %h:%p
+	Host V*5.pen
+	    ProxyCommand ssh vbox5.pen -W %h:%p
+	Host V*E.pen
+	    ProxyCommand ssh vboxE.pen -W %h:%p
+	
+	# Virtual Machines Hostnames
+	Host Vnessus?.pen
+	    Hostname 192.0.2.3
+	Host Vsaint?.pen
+	    Hostname 192.0.2.4
+	Host Vmisc?.pen
+	    Hostname 192.0.2.5
+	
+	Host *.pen
+	    User smpentest
+	    ForwardAgent yes
+	    VisualHostKey   yes
+	    RequestTTY yes
+	#### .pen #####
+	
+	#### .penlab ####
+	Host jumper.penlab
+		Hostname 63.235.131.210
+		Port 2225
+	
+	Host firewall.penlab
+		Hostname 169.254.0.1
+		ProxyCommand ssh jumper.penlab -W %h:%p
+	
+	Host controller.penlab
+		Hostname 169.254.0.4
+		ProxyCommand ssh jumper.penlab -W %h:%p
+	
+	Host jailer.penlab
+		Hostname 169.254.0.2
+		ProxyCommand ssh jumper.penlab -W %h:%p
+	
+	Host ctf0.penlab
+		Hostname 169.254.0.9
+		ProxyCommand ssh jumper.penlab -W %h:%p
+	
+	Host *.penlab
+	    User smpentest
+	    ForwardAgent yes
+	    VisualHostKey   yes
+	    RequestTTY yes
+	#### .penlab ####
+
+#### * ####
+Host *
+    ForwardAgent yes
+    VisualHostKey   yes
+    RequestTTY yes
+    PreferredAuthentications publickey,password,keyboard-interactive
+#### * ####
+
