@@ -23,12 +23,13 @@ def encode():
 
     # shift the message over the value of the key chr(ord(message))
     cipher = ""
+    cipher_text = ""
     for m in message:
         if m.isalpha():
             cipher = ord(m) + key
             if cipher > ord('z'):
                 cipher = cipher - (ord('z') + 1 - ord('a'))
-            cipher_text = chr(cipher)
+            cipher_text += chr(cipher)
 
     # when the cipher reaches z, it should loop around and start again at a.
     # i.e. 122 = z and 97 = a.
@@ -45,18 +46,20 @@ def decode():
     # get key used to encode message
 
     message = ""
+    plaintext = ""
     # undo ciphertext
     for c in cipher:
-        message += chr(ord(c) - key)
         if c.isalpha():
             message = ord(c) - key
             if message < ord('a'):
                 message = message - (ord('a') + 1 - ord('z'))
-            plaintext = chr(message)
+            plaintext += chr(message)
 
     # print plaintext message
     print(plaintext)
 
-
+main()
+"""
 if __name__ == "__main__":
     main()
+"""

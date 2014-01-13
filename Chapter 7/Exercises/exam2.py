@@ -3,20 +3,6 @@ from graphics import *
 
 
 def main():
-    # open the exam score file
-    infileName = input("Enter exam score file name: ")
-
-    # create graphwin object
-    win = GraphWin("Exam Scores", 400, 300)
-    win.setCoords(0.0, 0.0, 3.0, 4.0)
-
-    # draw bar graph from data in exam score file
-
-    # lable the bars with the corresponding last name from score file
-
-
-"""
-def main():
     # get the exam score
     score = int(input("Enter exam score: "))
 
@@ -30,6 +16,7 @@ def main():
 
     # return correct letter grade for score.
     print("The letter grade is: {0}".format(grade))
-"""
 
-main()
+
+if __name__ in ['__console__', '__main__']:
+    main()
