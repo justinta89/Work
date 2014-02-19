@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% import "helpers/forms.html" as forms %}
+
+{% block title %}Welcome to Sample App!{% endblock %}
+
+{% block content %}
+<form action="/sample" method="POST">
+    <fieldset>
+        <legend>New Sample</legend>
+        {{ forms.render(sample_form) }}
+        <p><input type="Submit" value="Save New Name"></p>
+    </fieldset>
+</form>
+
+<hr />
+
+<ul>
+    {% for name in names: %}
+    <li>{{ name }}</li>
+    {% endfor %}
+</ul>
+{% endblock content %}
