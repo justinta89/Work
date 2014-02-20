@@ -9,9 +9,17 @@ default = Blueprint('default', __name__)
 @default.route('/')
 def index():
     form = EngagementForm()
-    engagements_query = db.session.query(Engagement)
+    return render_template('index.html', form=form)
+
+
+@default.route('/engagement/<int:id>', methods=['GET'])
+def engagement(id):
+    engagements_query = db.session.query(Engagement).filter_by(id=id)
+    if not engagements_query:
+        return redirect(url_for('.index'))
+
     engagements = query_to_list(engagements_query, False)
-    return render_template('index.html', form=form, engagements=engagements)
+    return render_template('engagements.html', engagements=engagements)
 
 
 @default.route('/engagement/create', methods=['POST'])

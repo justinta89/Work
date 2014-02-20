@@ -31,6 +31,7 @@ class Engagement(db.Model):
 
     # Relationships
     services = orm.relationship('Service')
+    quote_id = db.Column(db.Integer, db.ForeignKey('quote.id'))
 
     def __init__(self, **kwargs):
         for (k, v) in kwargs.items():
@@ -175,6 +176,21 @@ class Perspective(Service):
     __mapper_args__ = {
         'polymorphic_identity': 'perspective',
     }
+
+    def __init__(self, **kwargs):
+        for (k, v) in kwargs.items():
+            if k in Network.__dict__:
+                if k[0] != '_' or k != 'id':
+                    setattr(self, k, v)
+
+
+class Quote(db.Model):
+    __tablename__ = 'quote'
+    id = db.Column(db.Integer, primary_key=True)
+    account = db.Column(db.String)
+
+    # Relationships
+    engagements = orm.relationship('Engagement')
 
     def __init__(self, **kwargs):
         for (k, v) in kwargs.items():

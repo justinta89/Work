@@ -86,3 +86,6 @@ HMAC_REQUIRED = 'Requires HMAC'
 # NetworkLayer
 SCOPE_LABEL = 'Scope'
 UNIQUE_SERVICES_LABEL = 'Number of Unique Services'
+
+# Quote
+ACCOUNT_LABEL = 'Account Name'

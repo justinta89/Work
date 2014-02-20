@@ -167,3 +167,7 @@ class NetworkLayerForm(Form):
     third_parties = TextField(constants.THIRD_PARTIES_LABEL)
     past_issues = BooleanField(constants.PAST_ISSUES_LABEL)
     notes = TextAreaField(constants.NOTES_LABEL)
+
+
+class QuoteForm(Form):
+    account = StringField(constants.ACCOUNT_LABEL, validators=[DataRequired()])
