@@ -22,7 +22,8 @@ class Engagement(db.Model):
     deadline = db.Column(db.Date)
     security_appliances = db.Column(db.Enum(*constants.APPLIANCES))
     permit_whitelisting = db.Column(db.Boolean)
-    bandwidth_restrictions = db.Column(db.String)
+    bandwidth_restrictions = db.Column(db.Boolean)
+    restrictions = db.Column(db.String)
     uses_third_parties = db.Column(db.Boolean)
     third_parties = db.Column(db.String)
     past_issues = db.Column(db.Boolean)
@@ -45,12 +46,12 @@ class Service(db.Model):
 
     # Constraints
     environment = db.Column(db.Enum(*constants.ENVIRONMENT))
-
     time_window = db.Column(db.String)
     deadline = db.Column(db.Date)
     security_appliances = db.Column(db.Enum(*constants.APPLIANCES))
     permit_whitelisting = db.Column(db.Boolean)
-    bandwidth_restrictions = db.Column(db.String)
+    bandwidth_restrictions = db.Column(db.Boolean)
+    restrictions = db.Column(db.String)
     uses_third_parties = db.Column(db.Boolean)
     third_parties = db.Column(db.String)
     past_issues = db.Column(db.Boolean)
