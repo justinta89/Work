@@ -1,5 +1,6 @@
-import constants
 from flask.ext.sqlalchemy import orm, SQLAlchemy
+
+from app import constants
 
 db = SQLAlchemy()
 
@@ -141,14 +142,14 @@ class API(Service):
 
 
 class NetworkLayer(Service):
-    __tablename__ = 'network'
+    __tablename__ = 'network_layer'
     id = db.Column(db.Integer, db.ForeignKey('service.id'), primary_key=True)
     scope = db.Column(db.Text)
     unique_services = db.Column(db.Integer)
 
     # Polymorphism
     __mapper_args__ = {
-        'polymorphic_identity': 'network',
+        'polymorphic_identity': 'network_layer',
     }
 
     def __init__(self, **kwargs):

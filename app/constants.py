@@ -12,26 +12,22 @@ SIZE_OF_APPLICATION = ['1-25', '25-50', '75-100', '100-150', '150-200',
 TWO_FACTOR_METHODS = ['RSA Token',
                       'Google Authenticator',
                       'Client Certificate',
-                      'Other'
-                      ]
+                      'Other']
 
 # API
 DOCUMENTATION_QUALITY = ['Non-Existant',
                          'Contextual Only (no sample requests)',
                          'Sample Requests Only',
                          'Sample Requests & Data Types',
-                         'Sample Requests, Data Types, and Sample Values'
-                         ]
+                         'Sample Requests, Data Types, and Sample Values']
 MESSAGE_FORMAT = ['SOAP',
                   'JSON',
                   'XML',
                   'Binary Protocol',
                   'Standard GET/POST',
-                  'Other'
-                  ]
+                  'Other']
 
 # Perspective
 HARDWARE = ['Netbook',
             'Thumbdrive',
-            'None Needed'
-            ]
+            'None Needed']

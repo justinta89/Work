@@ -4,10 +4,10 @@
 {% block title %}Welcome to Sample App!{% endblock %}
 
 {% block content %}
-<form action="/sample" method="POST">
+<form action="{{url_for('.add_engagement')}}" method="POST">
     <fieldset>
         <legend>New Sample</legend>
-        {{ forms.render(sample_form) }}
+        {{ forms.render(form) }}
         <p><input type="Submit" value="Save New Name"></p>
     </fieldset>
 </form>
@@ -15,8 +15,8 @@
 <hr />
 
 <ul>
-    {% for name in names: %}
-    <li>{{ name }}</li>
+    {% for engagement in engagements: %}
+    <li>{{ enagement }}</li>
     {% endfor %}
 </ul>
 {% endblock content %}

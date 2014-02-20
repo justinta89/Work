@@ -1,37 +1,49 @@
 from flask.ext.wtf import Form
-from wtforms.fields import StringField
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms.fields import (StringField, SelectField, BooleanField, DateField,
+                            DecimalField, TextField, TextAreaField)
+from wtforms.validators import DataRequired, Length, NumberRange, URL, Optional
 
-import constants
-from .models import Engagement, Application, API, Network, Perspective
+from app import constants
+from .models import Engagement, Application, API, NetworkLayer, Perspective
 
 
 class EngagementForm(Form):
-    type = SelectField(choices=constants.ENGAGEMENT_TYPES)
+    choices = [(choice, choice) for choice in constants.ENGAGEMENT_TYPES]
+    type = SelectField(choices=choices)
+
     renewal = BooleanField()
-    number_of_reports = DecimalField(validator=[NumberRange(min=0, max=100)])
-    retesting_hours = DecimalField(validator=[NumberRange(min=0, max=1000)])
+    number_of_reports = DecimalField(validators=[Optional(),
+                                                 NumberRange(min=0, max=100)])
+    retesting_hours = DecimalField(validators=[Optional(),
+                                               NumberRange(min=0, max=1000)])
 
     # Constraints
-    reporting_frequency = SelectField(choices=constants.REPORTING_FREQUENCY)
+    choices = [(choice, choice) for choice in constants.REPORTING_FREQUENCY]
+    reporting_frequency = SelectField(choices=choices)
+
     time_window = TextField(Length(max=500))
-    deadline = DateField()
-    security_appliances = SelectField(choices=constants.APPLIANCES)
+    deadline = DateField(validators=[Optional()])
+
+    choices = [(choice, choice) for choice in constants.APPLIANCES]
+    security_appliances = SelectField(choices=choices)
+
     permit_whitelisting = BooleanField()
     bandwidth_restrictions = TextField()
     uses_third_parties = BooleanField()
     thid_parties = TextField()
     past_issues = BooleanField()
-    notes = TextArea()
+    notes = TextAreaField()
 
 
 class ApplicationForm(Form):
-    link = TextField(validator=[URL()])
+    link = TextField(validators=[URL()])
     non_auth_assessment = BooleanField()
     requires_auth = BooleanField()
     role_count = DecimalField()
     public_registration = BooleanField()
-    size = SelectField(choices=constants.SIZE_OF_APPLICATION)
+
+    choices = [(choice, choice) for choice in constants.SIZE_OF_APPLICATION]
+    size = SelectField(choices=choices)
 
     # Constraints
     blacklisted_pages = TextField()
@@ -39,13 +51,18 @@ class ApplicationForm(Form):
     two_factor_methods = TextField()
     live_database = BooleanField()
 
-    reporting_frequency = SelectField(choices=constants.REPORTING_FREQUENCY)
+    choices = [(choice, choice) for choice in constants.REPORTING_FREQUENCY]
+    reporting_frequency = SelectField(choices=choices)
+
     time_window = TextField(Length(max=500))
     deadline = DateField()
-    security_appliances = SelectField(choices=constants.APPLIANCES)
+
+    choices = [(choice, choice) for choice in constants.APPLIANCES]
+    security_appliances = SelectField(choices=choices)
+
     permit_whitelisting = BooleanField()
     bandwidth_restrictions = TextField()
     uses_third_parties = BooleanField()
     thid_parties = TextField()
     past_issues = BooleanField()
-    notes = TextArea()
+    notes = TextAreaField()
