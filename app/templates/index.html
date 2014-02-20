@@ -1,22 +1,28 @@
 {% extends "layout.html" %}
 {% import "helpers/forms.html" as forms %}
 
-{% block title %}Welcome to Sample App!{% endblock %}
+{% block title %}PMI - Quote Calculator{% endblock %}
 
 {% block content %}
-<form action="{{url_for('.add_engagement')}}" method="POST">
+
+<div class="col-sm-6">
+    <h3>New Quote</h3>
+</div>
+
+<div class="col-sm-6">
+    <h3>Resume Quote</h3>
+</div>
+
+<!--
+<form action="{{url_for('.create_engagement')}}" method="POST">
     <fieldset>
         <legend>New Sample</legend>
         {{ forms.render(form) }}
         <p><input type="Submit" value="Save New Name"></p>
     </fieldset>
 </form>
+-->
 
 <hr />
 
-<ul>
-    {% for engagement in engagements: %}
-    <li>{{ enagement }}</li>
-    {% endfor %}
-</ul>
 {% endblock content %}

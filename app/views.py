@@ -14,8 +14,8 @@ def index():
     return render_template('index.html', form=form, engagements=engagements)
 
 
-@default.route('/engagement', methods=['POST'])
-def add_engagement():
+@default.route('/engagement/create', methods=['POST'])
+def create_engagement():
     form = EngagementForm()
     if form.validate_on_submit():
         engagement = Engagement()
@@ -24,4 +24,14 @@ def add_engagement():
         db.session.commit()
         return redirect(url_for('.index'))
 
-    return render_template('validation_error.html', form=form)
+    return render_template('engagement.html', form=form)
+
+
+@default.route('/quote/', methods=['GET'])
+def quote():
+    pass
+
+
+@default.route('/quote/create', methods=['POST'])
+def create_quote():
+    pass
