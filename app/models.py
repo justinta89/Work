@@ -11,11 +11,11 @@ class Engagement(db.Model):
     renewal = db.Column(db.Boolean)
     number_of_reports = db.Column(db.Integer,
                                   default=constants.NUMBER_OF_REPORTS)
-    amount_of_retesting = db.Column(db.Integer,
-                                    default=constants.RETESTING_HOURS)
+    retesting_hours = db.Column(db.Integer,
+                                default=constants.RETESTING_HOURS)
 
     # Constraints
-    reporting_frequency = db.Column(db.Enum(*constants.REPORTING))
+    reporting_frequency = db.Column(db.Enum(*constants.REPORTING_FREQUENCY))
 
     time_window = db.Column(db.String, default=None)
     deadline = db.Column(db.Date)
@@ -112,7 +112,8 @@ class API(Service):
     public_registration = db.Column(db.Boolean)
     size = db.Column(db.Enum(*constants.SIZE_OF_APPLICATION))
     documentation = db.Column(db.Boolean)
-    documentation_quality = db.Column(db.Enum(*constants.DOCUMENTATION_QUALITY))
+    documentation_quality = db.Column(db.Enum(
+        *constants.DOCUMENTATION_QUALITY))
     message_format = db.Column(db.Enum(*constants.MESSAGE_FORMAT))
     prepopulated_objects = db.Column(db.Boolean)
     test_suites_available = db.Column(db.Boolean)
