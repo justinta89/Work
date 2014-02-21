@@ -1,5 +1,6 @@
 # Engagement
 ENGAGEMENT_TYPES = ['External', 'Internal']
+ENGAGEMENT_INTENT = ['PCI', 'HIPAA', 'Other Compliance Standard', 'Elective']
 NUMBER_OF_REPORTS = 1
 RETESTING_HOURS = 4
 APPLIANCES = ['Firewall', 'IPS', 'IDS', 'WAF']
@@ -38,6 +39,9 @@ HARDWARE = ['Netbook',
 ##########################
 # Engagement
 TYPE_LABEL = 'Type of Engagement'
+INTENT_LABEL = 'Type of Engagement'
+AUDIT_ASSOCIATION_LABEL = 'Associated with an Audit'
+WHICH_COMPANY_LABEL = 'Who is Performing the Audit'
 RENEWAL_LABEL = 'Renewal Opportunity'
 NUMBER_OF_REPORTS_LABEL = 'Number of Reports'
 RETESTING_HOURS_LABEL = 'Number of Retesting Hours'

@@ -9,6 +9,9 @@ class Engagement(db.Model):
     __tablename__ = 'engagement'
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.Enum(*constants.ENGAGEMENT_TYPES), nullable=False)
+    intent = db.Column(db.Enum(*constants.ENGAGEMENT_INTENT), nullable=False)
+    audit_association = db.Column(db.Boolean)
+    which_company = db.Column(db.String)
     renewal = db.Column(db.Boolean)
     number_of_reports = db.Column(db.Integer,
                                   default=constants.NUMBER_OF_REPORTS)

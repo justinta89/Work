@@ -12,6 +12,11 @@ class EngagementForm(Form):
     choices = [(choice, choice) for choice in constants.ENGAGEMENT_TYPES]
     type = SelectField(constants.TYPE_LABEL, choices=choices)
 
+    choices = [(choice, choice) for choice in constants.ENGAGEMENT_INTENT]
+    type = SelectField(constants.INTENT_LABEL, choices=choices)
+
+    audit_association = BooleanField(constants.AUDIT_ASSOCIATION_LABEL)
+    which_company = TextField(constants.WHICH_COMPANY_LABEL)
     renewal = BooleanField(constants.RENEWAL_LABEL)
     number_of_reports = DecimalField(constants.NUMBER_OF_REPORTS_LABEL,
                                      validators=[Optional(),
