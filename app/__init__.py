@@ -1,6 +1,7 @@
 from flask import Flask
 
-from .models import db, Engagement, Service, Application
+from .models import (db, Engagement, Service, Application, API,
+                     NetworkLayer, Perspective, Quote)
 from .views import default
 
 app = Flask(__name__)

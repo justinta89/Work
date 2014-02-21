@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}PMI - Quote{% endblock %}
+
+{% block content %}
+<div class="col-sm-6">
+    <h3>New Quote</h3>
+    <form method="POST" action="{{ url_for('.create_quote') }}">
+    <div class="col-sm-12 section">
+        <div class="col-sm-12 section-header">
+            Account Detail 
+        </div>
+        <div class="col-sm-12 form-group">
+            {{ form.account.label(class_='col-sm-5 control-label') }}
+            <div class="col-sm-7">
+                {{ form.account(class_='form-control') }}
+            </div>
+        </div>
+        <div class="col-sm-12">
+            {{ form.csrf_token }}
+            <div class="col-sm-12 form-group">
+                <button type="submit" class="btn btn-default pull-right">Create Account</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<div class="col-sm-6">
+    <h3>Resume Quote</h3>
+    <div class="col-sm-12 section">
+        <div class="col-sm-12 section-header">
+            Active Quotes
+        </div>
+        <div class="col-sm-12">
+        {% for quote in quotes: %}
+            <a href="{{ url_for('.quote', id=quote[0]) }}">{{quote[1]}}</a>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

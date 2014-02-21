@@ -1,25 +1,41 @@
 {% macro stand_alone(field_list) %}
+{% for field in field_list: %}
 <div class="col-sm-12">
+    {% if field.type == 'BooleanField' %}
     <div class="col-sm-6 form-group">
-    {% for field in field_list: %}
+        <label style="width: 100%">
+            <span class="col-sm-5">{{field.label.text}}</span> {{field(class_='col-sm-7')}}
+        </label>
+    </div>
+    {% else %}
+    <div class="col-sm-6 form-group">
         {{ field.label(class_='col-sm-5 control-label') }}
         <div class="col-sm-7">
-            {{ field }}
+            {{ field(class_='form-control') }}
         </div>
-    {% endfor %}
     </div>
+    {% endif %}
 </div>
+{% endfor %}
 {% endmacro %}
 
 
 {% macro dependant(parent, children) %}
 <div class="col-sm-12">
+    {% if parent.type == 'BooleanField' %}
+    <div class="col-sm-6 form-group">
+        <label style="width: 100%">
+            <span class="col-sm-5">{{parent.label.text}}</span> {{parent(class_='col-sm-7')}}
+        </label>
+    </div>
+    {% else %}
     <div class="col-sm-6 form-group">
         {{ parent.label(class_='col-sm-5 control-label') }}
         <div class="col-sm-7">
             {{ parent(class_='form-control') }}
         </div>
     </div>
+    {% endif %}
 
     <div class="col-sm-6">
     {% for child in children: %}
@@ -31,14 +47,16 @@
         </div>
         {% else %}
         <div class="form-group">
-            {{ child.label(class_="col-sm-5 control-label") }}
-            <div class="col-sm-7">
-                {{ child(class_="form-control") }}
-            </div>
+            {{ child.label(class_="col-sm-12 control-label") }}
+            {{ child(class_="col-sm-12 form-control") }}
         </div>
         {% endif %}
         <br />
     {% endfor %}
     </div>
 </div>
+{% endmacro %}
+
+{% macro display_quote(quote) %}
+
 {% endmacro %}
