@@ -13,7 +13,7 @@ class EngagementForm(Form):
     type = SelectField(constants.TYPE_LABEL, choices=choices)
 
     choices = [(choice, choice) for choice in constants.ENGAGEMENT_INTENT]
-    type = SelectField(constants.INTENT_LABEL, choices=choices)
+    intent = SelectField(constants.INTENT_LABEL, choices=choices)
 
     audit_association = BooleanField(constants.AUDIT_ASSOCIATION_LABEL)
     which_company = TextField(constants.WHICH_COMPANY_LABEL)

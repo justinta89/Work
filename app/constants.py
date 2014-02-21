@@ -39,7 +39,7 @@ HARDWARE = ['Netbook',
 ##########################
 # Engagement
 TYPE_LABEL = 'Type of Engagement'
-INTENT_LABEL = 'Type of Engagement'
+INTENT_LABEL = 'Intent of Engagement'
 AUDIT_ASSOCIATION_LABEL = 'Associated with an Audit'
 WHICH_COMPANY_LABEL = 'Who is Performing the Audit'
 RENEWAL_LABEL = 'Renewal Opportunity'
