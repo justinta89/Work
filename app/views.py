@@ -17,9 +17,11 @@ def engagement(id):
     engagements_query = db.session.query(Engagement).filter_by(id=id)
     if not engagements_query:
         return redirect(url_for('.index'))
+    form = EngagementForm()
 
     engagements = query_to_list(engagements_query, False)
-    return render_template('engagements.html', engagements=engagements)
+    return render_template('engagement.html', engagements=engagements,
+                           dir=dir, form=form)
 
 
 @default.route('/engagement/create', methods=['POST'])
