@@ -1,0 +1,44 @@
+{% macro stand_alone(field_list) %}
+<div class="col-sm-12">
+    <div class="col-sm-6 form-group">
+    {% for field in field_list: %}
+        {{ field.label(class_='col-sm-5 control-label') }}
+        <div class="col-sm-7">
+            {{ field }}
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro dependant(parent, children) %}
+<div class="col-sm-12">
+    <div class="col-sm-6 form-group">
+        {{ parent.label(class_='col-sm-5 control-label') }}
+        <div class="col-sm-7">
+            {{ parent(class_='form-control') }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+    {% for child in children: %}
+        {% if child.type == 'BooleanField' %}
+        <div class="form-group">
+            <label style="width: 100%">
+                <span class="col-sm-5">{{child.label.text}}</span> {{child(class_='col-sm-7')}}
+            </label>
+        </div>
+        {% else %}
+        <div class="form-group">
+            {{ child.label(class_="col-sm-5 control-label") }}
+            <div class="col-sm-7">
+                {{ child(class_="form-control") }}
+            </div>
+        </div>
+        {% endif %}
+        <br />
+    {% endfor %}
+    </div>
+</div>
+{% endmacro %}
