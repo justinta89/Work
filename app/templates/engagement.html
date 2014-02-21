@@ -1,12 +1,24 @@
 {% extends "layout.html" %}
 {% import "helpers/format.html" as format %}
 
-{% block title %}PMI - Engagements{% endblock %}
+{% block title %}PMI - Quote{% endblock %}
 
 {% block content %}
+<div class="col-sm-12">
+    <h3>Quote</h3>
+    <hr />
+    
+    {{ format.display_quote(quote) }}
+
+    <hr />
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#">Engagement</a></li>
+        <li><a href="{{ url_for('.quote', id=id, template='application') }}">Application</a></li>
+    </ul>
+</div>
+
 
 <div class="col-sm-12">
-    <h3>Engagement</h3>
     <form href="{{ url_for('.create_engagement') }}" method="POST">
     <div class="col-sm-12 section">
         <span class="col-sm-12 section-header">
@@ -15,7 +27,33 @@
 
         {{ format.stand_alone([form.type]) }}
         {{ format.dependant(form.intent, [form.audit_association, form.which_company]) }}
+        {{ format.stand_alone([form.renewal, form.number_of_reports]) }}
+    </div>
+
+    <div class="col-sm-12 section">
+        <span class="col-sm-12 section-header">
+            Constraints
+        </span>
+
+        {{ format.stand_alone([form.reporting_frequency, form.time_window, form.deadline]) }}
         {{ format.dependant(form.security_appliances, [form.permit_whitelisting]) }}
+        {{ format.dependant(form.bandwidth_restrictions, [form.restrictions]) }}
+        {{ format.dependant(form.uses_third_parties, [form.third_parties]) }}
+        {{ format.stand_alone([form.past_issues]) }}
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+            {{ form.notes.label(class_='col-sm-12') }} 
+            {{ form.notes(class_='col-sm-12') }} 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        {{ form.csrf_token }}
+        <div class="col-sm-12 form-group">
+            <button type="submit" class="btn btn-default pull-right">Add Engagement</button>
+        </div>
+    </div>
+
     </form>
 
 </div>
