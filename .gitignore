@@ -1,7 +1,0 @@
-*.swp
-*.pyc
-*__pycache__/
-*.pyo
-*.DS_Store
-*.db
-flask/
