@@ -5,8 +5,8 @@
 # send garbage data to port, then analyze banner results.
 
 
-import optparse
 from socket import *
+from optparse import OptionParser
 
 
 def connScan(tgtHost, tgtPort):
@@ -15,11 +15,11 @@ def connScan(tgtHost, tgtPort):
         connSkt.connect((tgtHost, tgtPort))
         connSkt.send('ViolentPython\r\n')
         results = connSkt.recv(100)
-        print("[+]{0}/tcp open".format(tgtPort))
+        print("[+] {0}/tcp open".format(tgtPort))
         print("[+] {0}".format(str(results)))
         connSkt.close()
     except:
-        print("[-]{0}/tcp closed".format(tgtPort))
+        print("[-] {0}/tcp closed".format(tgtPort))
 
 
 def portScan(tgtHost, tgtPorts):
@@ -40,23 +40,24 @@ def portScan(tgtHost, tgtPorts):
         print("Scanning port {0}".format(tgtPort))
         connScan(tgtHost, int(tgtPort))
 
+
 def main():
-    parser = optparse.OptionParser('usage prog -H' +
-                    ' <target host> -p <target port>')
+    parser = OptionParser('usage prog -H' +
+                          '<target host> -p <target port>')
 
     parser.add_option('-H',
-        dest='tgtHost',
-        type='string',
-        help='specificy target host')
+                      dest='tgtHost',
+                      type='string',
+                      help='specificy target host')
 
     parser.add_option('-p',
-        dest = 'tgtPort',
-        type = 'string',
-        help = 'Specifiy target port')
+                      dest='tgtPort',
+                      type='string',
+                      help='Specifiy target port')
 
     (options, args) = parser.parse_args()
     tgtHost = options.tgtHost
-    tgtPorts = str(options.tgtPort).split(', ')
+    tgtPorts = str(options.tgtPort).split(',')
 
     if (tgtHost == None) | (tgtPorts == None):
         print(parser.usage)
