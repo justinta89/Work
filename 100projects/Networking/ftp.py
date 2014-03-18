@@ -1,8 +1,9 @@
 # FTP Program - A file transfer program which can transfer files back and
-#forth from a remote web sever.
+# forth from a remote web sever.
 
-from ftplib import FTP
+from ftplib import FTP, error_perm
 from argparse import ArgumentParser
+from getpass import getpass
 
 
 def parseargs():
@@ -10,9 +11,7 @@ def parseargs():
     parser = ArgumentParser()
     parser.add_argument("-f", "--filename", help="File to be retreived or" +
                         "uploaded to remote server.")
-    parser.add_argument("-u", "--username", help="username for remote host.")
-    parser.add_argument("-s", "--host", help="remote server.")
-    parser.add_argument("-p", "--password", help="password for remote host.")
+    parser.add_argument("-s", "--host", help="remote host.")
     parser.add_argument("-r", "--retreive", help="retreive file from " +
                         "remote host")
     parser.add_argument("-t", "--upload", help="upload file to remote host.")
@@ -29,31 +28,37 @@ def createFtpConnect(server, user, passwd):
         ftp.login(user, passwd)
         return ftp
     except:
-        return "Could not connect to remote server"
+        print(error_perm())
 
 
 def ftpTransfer(filename, ftp):
     try:
         ftp.transfercmd('STOR ' + filename)
-        return "Upload complete!"
+        print("Upload complete!")
     except:
-        return "Upload failed!"
+        print(error_perm())
 
 
 def ftpRetreive(filename, ftp, outfile=None):
     try:
         ftp.retrlines('RETR ' + filename, open(filename, 'wb').write)
-        return "Download complete!"
+        print("Download complete!")
     except:
-        return "Download failed!"
+        print(error_perm())
+
+
+def login():
+    username = input("Enter username: ")
+    password = getpass("Enter password: ")
+
+    return username, password
 
 
 def main(args):
     # more readable names
     server = args.host
-    username = args.username
-    password = args.password
     txtfile = args.filename
+    username, password = login()
 
     #check options
     ftp = createFtpConnect(server, username, password)
