@@ -1,5 +1,6 @@
 ln -s ~/dotfiles/slate ~/.slate;
-ls -s ~/dotfiles/ssh ~/.ssh;
-ls -s ~/dotfiles/vimrc ~/.vimrc;
+ln -s ~/dotfiles/ssh ~/.ssh;
+ln -s ~/dotfiles/vimrc ~/.vimrc;
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf;
 
   

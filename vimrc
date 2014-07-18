@@ -128,6 +128,11 @@ colorscheme elflord
 " colors.
 highlight Pmenu ctermfg=black ctermbg=white
 
+" Powerline stuff
+set laststatus=2 " Always show statusline
+set encoding=utf-8 " Necessary to show encoded glyphs
+set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
+
 
 """ Configure vundles
 " 
@@ -147,7 +152,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Here are some defualt plugins that add convenience for programming python.
-Bundle 'klen/python-mode.git'
+"Bundle 'klen/python-mode.git'
 "Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'ivanov/vim-ipython.git'
 Bundle 'Lokaltog/vim-powerline'
